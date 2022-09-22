@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 @Slf4j
 public class AppMain {
   public static void main(String[] args) {
-    new MainFrame("test", getVersion()).load();
+    MainFrame.getInstance().load("test", getVersion());
   }
 
   private static String getVersion() {
