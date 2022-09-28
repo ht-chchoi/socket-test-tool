@@ -2,6 +2,7 @@ package com.ht.sockettesttool.core.mainpage;
 
 import com.ht.sockettesttool.view.page.MainPage;
 
+import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 
 public class MainPagePostConstruct {
@@ -14,6 +15,7 @@ public class MainPagePostConstruct {
   public void bootMainPageInitialSetting() {
     this.initBtnActions();
     this.setInitialValues();
+    this.initLayoutList();
   }
 
   private void setInitialValues() {
@@ -25,6 +27,11 @@ public class MainPagePostConstruct {
     this.setConnectDisConnectActions();
     this.setSendAction();
     this.setClearActions();
+  }
+
+  private void initLayoutList() {
+    this.mainPage.getLiLayout().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    this.mainPage.getLiLayoutModel().addElement("default");
   }
 
   private void setConnectDisConnectActions() {

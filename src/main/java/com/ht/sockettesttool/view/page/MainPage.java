@@ -26,10 +26,14 @@ public class MainPage {
   private JButton btnDisConnect;
   private JButton btnConnect;
   private JButton btnSend;
+  private JList liLayout;
+  private final DefaultListModel<String> liLayoutModel = new DefaultListModel<>();
+  private JScrollPane layoutScroll;
 
   public MainPage(final JFrame parent) {
     this.parent = parent;
     this.midSplitPane.setDividerLocation((int) (parent.getWidth() * 0.5));
+    this.getLiLayout().setModel(liLayoutModel);
   }
 
   {
