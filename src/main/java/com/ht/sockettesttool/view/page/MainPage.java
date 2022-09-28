@@ -21,17 +21,15 @@ public class MainPage {
   private JButton btnClearSend;
   private JButton btnClearReceive;
   private JButton btnClearLogConsole;
+  private JTextField tfIp;
+  private JTextField tfPort;
+  private JButton btnDisConnect;
+  private JButton btnConnect;
+  private JButton btnSend;
 
   public MainPage(final JFrame parent) {
     this.parent = parent;
     this.midSplitPane.setDividerLocation((int) (parent.getWidth() * 0.5));
-    this.initBtnActions();
-  }
-
-  private void initBtnActions() {
-    this.btnClearSend.addActionListener(e -> this.taSend.setText(""));
-    this.btnClearReceive.addActionListener(e -> this.taReceive.setText(""));
-    this.btnClearLogConsole.addActionListener(e -> this.taLogConsole.setText(""));
   }
 
   {

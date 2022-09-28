@@ -24,7 +24,7 @@
 
     <appender name="MAIN_PAGE_CONSOLE" class="com.ht.sockettesttool.common.config.MainPageConsoleLogAppender"/>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ROLLING" />
         <appender-ref ref="MAIN_PAGE_CONSOLE" />

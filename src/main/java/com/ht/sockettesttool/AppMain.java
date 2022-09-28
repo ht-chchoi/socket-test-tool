@@ -10,8 +10,10 @@ import java.io.InputStreamReader;
 
 @Slf4j
 public class AppMain {
+  private static final String APP_NAME = "Socket Test Tool";
+
   public static void main(String[] args) {
-    MainFrame.getInstance().load("test", getVersion());
+    MainFrame.getInstance().load(APP_NAME, getVersion());
   }
 
   private static String getVersion() {
