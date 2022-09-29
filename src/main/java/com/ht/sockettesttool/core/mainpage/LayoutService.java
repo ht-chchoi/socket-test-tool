@@ -22,6 +22,18 @@ public class LayoutService {
                 List.of(
                     new XmlMessage.Body.Device.Service("", "", "", "", null))),
             new XmlMessage.Body.Return("", "", ""))));
+    this.xmlMessageMap.put("공지사항요청", XmlMessage.builder()
+        .dest("SystemManager")
+        .type("query")
+        .feedback("true")
+        .uid("010201")
+        .uidName("단지연동")
+        .dong("")
+        .ho("")
+        .nameService("inform", 0)
+        .argumentService("10", 0)
+        .commentService("공지사항요청", 0)
+        .build());
   }
 
   private static class LazyHolder {

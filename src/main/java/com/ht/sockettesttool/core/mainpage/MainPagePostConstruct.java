@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
@@ -20,6 +21,7 @@ public class MainPagePostConstruct {
     this.initBtnActions();
     this.setInitialValues();
     this.initLayoutList();
+    this.initEncodingComboBox();
   }
 
   private void setInitialValues() {
@@ -36,6 +38,7 @@ public class MainPagePostConstruct {
   private void initLayoutList() {
     this.mainPage.getLiLayout().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     this.mainPage.getLiLayoutModel().addElement("default");
+    this.mainPage.getLiLayoutModel().addElement("공지사항요청");
     this.mainPage.getLiLayout().addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(final MouseEvent e) {
@@ -57,6 +60,11 @@ public class MainPagePostConstruct {
     });
   }
 
+  private void initEncodingComboBox() {
+    this.mainPage.getComboEncoding().addItem(StandardCharsets.UTF_16LE);
+    this.mainPage.getComboEncoding().addItem(StandardCharsets.UTF_8);
+  }
+
   private void setConnectDisConnectActions() {
     this.mainPage.getBtnConnect().addActionListener(e ->
         MainPageService.getInstance()
@@ -66,7 +74,9 @@ public class MainPagePostConstruct {
 
   private void setSendAction() {
     this.mainPage.getBtnSend().addActionListener(e -> MainPageService.getInstance()
-        .sendToServer(this.mainPage.getTaSend().getText(), StandardCharsets.UTF_16LE));
+        .sendToServer(
+            this.mainPage.getTaSend().getText(),
+            (Charset) this.mainPage.getComboEncoding().getSelectedItem()));
   }
 
   private void setClearActions() {
