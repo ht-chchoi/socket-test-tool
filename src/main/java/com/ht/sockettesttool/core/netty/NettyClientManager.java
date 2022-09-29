@@ -104,7 +104,7 @@ public class NettyClientManager {
     }
 
     try {
-      log.info("[send] >> {}", message);
+      log.info("[send] {}", message);
       this.channelPipeline.writeAndFlush(Unpooled.directBuffer()
               .writeBytes((String.format("%08d", message.getBytes(charset).length) + message).getBytes(charset)))
           .sync();

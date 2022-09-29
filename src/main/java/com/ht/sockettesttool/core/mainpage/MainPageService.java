@@ -48,11 +48,15 @@ public class MainPageService {
     }
   }
 
+  public void setSendTextArea(final String text) {
+    MainFrame.getInstance().getMainPage().getTaSend().setText(text);
+  }
+
   public void appendReceiveTextArea(final String text) {
     MainFrame.getInstance().getMainPage().getTaReceive().append(text + "\n");
   }
 
-  private void manageConnectionState(final boolean isConnectionEnable) {
+  public void manageConnectionState(final boolean isConnectionEnable) {
     MainFrame.getInstance().getMainPage().getBtnConnect().setEnabled(isConnectionEnable);
     MainFrame.getInstance().getMainPage().getBtnDisConnect().setEnabled(!isConnectionEnable);
     MainFrame.getInstance().getMainPage().getTaReceive().setEnabled(!isConnectionEnable);

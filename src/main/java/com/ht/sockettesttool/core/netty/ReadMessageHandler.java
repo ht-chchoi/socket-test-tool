@@ -22,4 +22,16 @@ public class ReadMessageHandler extends ChannelInboundHandlerAdapter {
     MainPageService.getInstance().appendReceiveTextArea(message);
     log.info("receive done");
   }
+
+  @Override
+  public void channelInactive(final ChannelHandlerContext ctx) {
+    log.warn("channel inactive");
+    MainPageService.getInstance().manageConnectionState(true);
+  }
+
+  @Override
+  public void exceptionCaught(final ChannelHandlerContext ctx, final Throwable cause) {
+    log.error("channel exception: ", cause);
+    MainPageService.getInstance().manageConnectionState(true);
+  }
 }

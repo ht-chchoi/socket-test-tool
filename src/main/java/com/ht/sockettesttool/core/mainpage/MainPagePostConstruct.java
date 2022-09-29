@@ -1,10 +1,14 @@
 package com.ht.sockettesttool.core.mainpage;
 
 import com.ht.sockettesttool.view.page.MainPage;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 public class MainPagePostConstruct {
   private final MainPage mainPage;
 
@@ -32,6 +36,25 @@ public class MainPagePostConstruct {
   private void initLayoutList() {
     this.mainPage.getLiLayout().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     this.mainPage.getLiLayoutModel().addElement("default");
+    this.mainPage.getLiLayout().addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(final MouseEvent e) {
+        if (e.getClickCount() > 1) {
+          String selectedValue = mainPage.getLiLayout().getSelectedValue();
+          if (selectedValue != null) {
+            MainPageService.getInstance().setSendTextArea(LayoutService.getInstance().createXmlMessage(selectedValue));
+          }
+        }
+      }
+    });
+    this.mainPage.getLiLayout().addListSelectionListener(e -> {
+      if (e.getValueIsAdjusting()) {
+        String selectedValue = this.mainPage.getLiLayout().getSelectedValue();
+        if (selectedValue != null) {
+          MainPageService.getInstance().setSendTextArea(LayoutService.getInstance().createXmlMessage(selectedValue));
+        }
+      }
+    });
   }
 
   private void setConnectDisConnectActions() {
